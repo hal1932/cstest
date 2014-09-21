@@ -48,6 +48,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\compiler\compiler.csproj">
+      <Project>{a7507f04-bb43-4950-a579-ff5902fa2f29}</Project>
+      <Name>compiler</Name>
+    </ProjectReference>
     <ProjectReference Include="..\lib\lib.csproj">
       <Project>{c61bffc4-4b09-4700-87a8-c6d1b4b4a53a}</Project>
       <Name>lib</Name>

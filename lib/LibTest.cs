@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Reflection;
+using System.Threading.Tasks;
 
 namespace lib
 {
@@ -17,7 +18,13 @@ namespace lib
             console.SetOut(writer);
             console.SetError(writer);
 
-            var compiler = domain.CreateInstanceAndUnwrap("compiler", "compiler.Compiler") as ICompiler;
+            // 別スレッドでつくったコンパイラでもちゃんと動作する？
+            ICompiler compiler = null;
+            Task.Factory.StartNew(() =>
+            {
+                compiler = domain.CreateInstanceAndUnwrap("compiler", "compiler.Compiler") as ICompiler;
+            }).Wait();
+
             if (compiler != null && compiler.Compile(src))
             {
                 var instance = compiler.CreateInstance("Test");

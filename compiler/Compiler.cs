@@ -21,6 +21,7 @@ namespace compiler
                 "System.Data.dll",
                 "System.Xml.dll",
                 "System.Xml.Linq.dll",
+                "lib.dll",
                 "compiler.dll",
             });
             param.GenerateInMemory = true;
