@@ -2,6 +2,7 @@
 using Microsoft.CSharp;
 using System;
 using System.CodeDom.Compiler;
+using System.Collections.Generic;
 
 namespace compiler
 {
@@ -26,7 +27,11 @@ namespace compiler
             param.GenerateExecutable = false;
             param.IncludeDebugInformation = false;
 
-            _provider = new CSharpCodeProvider();
+            _provider = new CSharpCodeProvider(
+                new Dictionary<string, string>()
+                {
+                    { "CompilerVersion", "v4.0" },
+                });
             _results = _provider.CompileAssemblyFromSource(param, src);
             if (_results.Errors.Count > 0)
             {
